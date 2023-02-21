@@ -1,0 +1,109 @@
+FROM osrf/ros:melodic-desktop-full-stretch
+
+WORKDIR /root
+ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"] 
+
+RUN apt-get update && apt-get install -q -y \
+	git \ 
+	cmake \
+	gnupg \
+	gnupg2 \
+	gnupg1 \
+	wget
+
+# Non-root user because some ROS commands don't work when they run as root
+RUN adduser dockerman 
+
+# Set up ROS
+RUN rosdep fix-permissions
+RUN su dockerman -c "rosdep update"
+RUN apt install -q -y python-rosinstall python-rosinstall-generator python-wstool build-essential
+RUN wget http://packages.ros.org/ros.key -O - | apt-key add -
+RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc 
+RUN source ~/.bashrc
+
+# Other pre-reqs
+RUN apt-get update && apt-get install -q -y \
+	python-catkin-tools \
+	python-catkin-pkg \
+	libeigen3-dev \ 
+	ffmpeg \
+	ros-melodic-joystick-drivers \
+	python-imaging-tk \
+	libgl1-mesa-dev \
+	libglew-dev \
+	libxkbcommon-dev \
+	unzip
+
+# Clone our repo
+RUN git clone --recurse-submodules https://github.com/NicerNewerCar/CS670-Team-4.git
+
+# Build pangolin
+RUN cd ~/CS670-Team-4/ && \
+	git clone --depth 1 --branch v0.6 https://github.com/stevenlovegrove/Pangolin.git && \
+	cd Pangolin && \
+	mkdir build && cd build && \
+	cmake .. && \
+	cmake --build .
+	
+# Build h264decoder
+RUN cd ~/CS670-Team-4/ && \
+	git clone --depth 1 --branch v1 https://github.com/DaWelter/h264decoder.git && \
+	cd h264decoder && \
+	sed -i 's/PIX_FMT_RGB24/AV_PIX_FMT_RGB24/g' h264decoder.cpp && \
+	mkdir build && cd build && \
+	cmake .. && \
+	make
+RUN cp ~/CS670-Team-4/h264decoder/libh264decoder.so /usr/local/lib/python2.7/dist-packages
+	
+# Install TelloPy
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/TelloPy && \
+	python setup.py install
+
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/ && \
+	su dockerman -c "rosdep update" && \
+	rosdep install --from-paths src --ignore-src -r -y
+
+# Build ORB-SLAM2
+RUN rm -i ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/src/orb_slam_2_ros/CMakeLists.txt
+RUN mv ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/src/orb_slam_2_ros/CMakeLists_melodic.txt ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/src/orb_slam_2_ros/CMakeLists.txt
+RUN sed -i 's/#add_dependencies (${PROJECT_NAME}_stereo ${PROJECT_NAME} ${PROJECT_NAME}_gencfg)/add_dependencies (${PROJECT_NAME}_stereo ${PROJECT_NAME} ${PROJECT_NAME}_gencfg)/g' ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/src/orb_slam_2_ros/CMakeLists.txt
+RUN sed -i 's/#add_dependencies (${PROJECT_NAME}_rgbd ${PROJECT_NAME} ${PROJECT_NAME}_gencfg)/add_dependencies (${PROJECT_NAME}_rgbd ${PROJECT_NAME} ${PROJECT_NAME}_gencfg)/g' ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/src/orb_slam_2_ros/CMakeLists.txt
+RUN su dockerman -c "rosdep update"
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws/ && \
+	catkin init && \
+	catkin clean && \
+	catkin config --extend /opt/ros/melodic && \
+	catkin build
+
+RUN echo "source ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/tello_catkin_ws//devel/setup.bash" >> ~/.bashrc
+RUN source ~/.bashrc
+
+# Set up CCM_SLAM
+
+# Build DBoW2
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/ccmslam_ws/src/ccm_slam/cslam/thirdparty/DBoW2/ && \
+	mkdir build && cd build && \
+	cmake .. && \
+	make -j8
+
+# Build g2o
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/ccmslam_ws/src/ccm_slam/cslam/thirdparty/g2o/ && \
+	mkdir build && cd build && \
+	cmake --cmake-args -DG2O_U14=0 .. && \
+	make -j8
+
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/ccmslam_ws/src/ccm_slam/cslam/conf && \
+	unzip ORBvoc.txt.zip
+
+# Build CCM_SLAM
+RUN cd ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/ccmslam_ws/ && \
+	source /opt/ros/melodic/setup.bash && \
+	catkin init && \
+	catkin clean && \
+	catkin config --extend /opt/ros/melodic && \
+	catkin build ccmslam --cmake-args -DG2O_U14=0 -DCMAKE_BUILD_TYPE=Release
+
+# RUN echo "source ~/CS670-Team-4/Tello_ROS_ORBSLAM/ROS/ccmslam_ws/devel/setup.bash" >> ~/.bashrc
+# RUN source ~/.bashrc

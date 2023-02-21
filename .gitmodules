@@ -1,0 +1,3 @@
+[submodule "Tello_ROS_ORBSLAM"]
+	path = Tello_ROS_ORBSLAM
+	url = https://github.com/tau-adl/Tello_ROS_ORBSLAM.git
