@@ -71,6 +71,7 @@
     <ClCompile Include="g2o\types\types_six_dof_expmap.cpp" />
     <ClCompile Include="global.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pyslam.cpp" />
     <ClCompile Include="slam\Atlas.cpp" />
     <ClCompile Include="slam\CameraModels\KannalaBrandt8.cpp" />
     <ClCompile Include="slam\CameraModels\Pinhole.cpp" />

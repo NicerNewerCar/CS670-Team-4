@@ -421,6 +421,9 @@
     <ClCompile Include="webcam.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="pyslam.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global.h">
