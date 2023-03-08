@@ -2,7 +2,7 @@
 * Note this must be compiled in release mode
 * Open the visual studio solution (`slam.sln`)
 * On the right, right click on slam and click build
-* Enter the main directory of the repo and run `.\x64\Release\slam.exe webcam ./Vocabulary/ORBvoc.txt ./Examples/Monocular-Inertial/EuRoC.yaml .\log\` to test the web cam
+* Enter the main directory of the repo and run `.\x64\Release\slam.exe drone ./Vocabulary/ORBvoc.txt drone.yaml` to test the web cam
 
 # README FROM MAIN REPO:
 # ORB_SLAM3_Windows

@@ -22,6 +22,8 @@ int stereo_inertial_euroc(int argc, char** argv);
 int stereo_inertial_tum_vi(int argc, char** argv);
 // Webcam
 int webcam(int argc, char** argv);
+//Drone
+int drone(int argc, char** argv);
 
 
 int main(int argc, char** argv)
@@ -76,7 +78,9 @@ int main(int argc, char** argv)
     }
     else if (0 == strcmp(argv[1], "webcam")) {
         webcam(argc, &argv[1]);
-
+    }
+    else if (0 == strcmp(argv[1], "drone")) {
+        drone(argc, &argv[1]);
     }
     else {
         printf("\nUsage: slam.exe testName testArguments");

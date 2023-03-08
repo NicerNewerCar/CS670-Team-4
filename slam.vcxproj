@@ -25,6 +25,7 @@
     <ClCompile Include="DBoW2\DBoW2\ScoringObject.cpp" />
     <ClCompile Include="DBoW2\DUtils\Random.cpp" />
     <ClCompile Include="DBoW2\DUtils\Timestamp.cpp" />
+    <ClCompile Include="drone.cpp" />
     <ClCompile Include="Examples\Monocular-Inertial\mono_inertial_euroc.cpp" />
     <ClCompile Include="Examples\Monocular-Inertial\mono_inertial_tum_vi.cpp" />
     <ClCompile Include="Examples\Monocular\mono_euroc.cpp" />
@@ -71,7 +72,6 @@
     <ClCompile Include="g2o\types\types_six_dof_expmap.cpp" />
     <ClCompile Include="global.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="pyslam.cpp" />
     <ClCompile Include="slam\Atlas.cpp" />
     <ClCompile Include="slam\CameraModels\KannalaBrandt8.cpp" />
     <ClCompile Include="slam\CameraModels\Pinhole.cpp" />
@@ -475,6 +475,7 @@
     <ClInclude Include="slam\Tracking.h" />
     <ClInclude Include="slam\TwoViewReconstruction.h" />
     <ClInclude Include="slam\Viewer.h" />
+    <ClInclude Include="tello.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Eigen\Cholesky" />

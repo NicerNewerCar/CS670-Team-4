@@ -421,7 +421,7 @@
     <ClCompile Include="webcam.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="pyslam.cpp">
+    <ClCompile Include="drone.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1545,6 +1545,7 @@
     <ClInclude Include="Eigen\src\UmfPackSupport\UmfPackSupport.h">
       <Filter>src\Eigen\src\UmfPackSupport</Filter>
     </ClInclude>
+    <ClInclude Include="tello.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Eigen\Cholesky">
