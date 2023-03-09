@@ -6,6 +6,10 @@
 #include <chrono>
 
 #include <opencv2/core/core.hpp>
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/videoio.hpp"
+
 
 #include <System.h>
 #include <Converter.h>
@@ -24,9 +28,13 @@ int drone(int argc, char** argv) {
 	}
 
 	// access the tellos stream
-	cv::VideoCapture cap{ "udp://0.0.0.0:11111", cv::CAP_FFMPEG };
 	tello.enable_video_stream();
-
+	cv::VideoCapture cap{ "udp://0.0.0.0:11111" };
+	if (cap.isOpened() == false) {
+		cout << "Cannot open the web cam" << endl;
+		cin.get(); //wait for any key press
+		return -1;
+	}
 	/* 
 	// Example flight code
 	tello.takeoff();

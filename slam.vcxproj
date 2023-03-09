@@ -446,6 +446,7 @@
     <ClInclude Include="g2o\types\types_seven_dof_expmap.h" />
     <ClInclude Include="g2o\types\types_six_dof_expmap.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="slam\Atlas.h" />
     <ClInclude Include="slam\CameraModels\GeometricCamera.h" />
     <ClInclude Include="slam\CameraModels\KannalaBrandt8.h" />
@@ -507,6 +508,9 @@
     <None Include="Eigen\SuperLUSupport" />
     <None Include="Eigen\SVD" />
     <None Include="Eigen\UmfPackSupport" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="slam.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

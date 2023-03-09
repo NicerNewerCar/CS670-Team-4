@@ -1,0 +1,33 @@
+files:
+  "slam/System.h":
+    namespaces:
+      ORB_SLAM3:
+        classes:
+          System:
+            member_functions:
+              - TrackMonocular   
+              - Shutdown    
+              - GetMap
+            enums:
+              eSensor:
+                custom_enum_vals:
+                  MONOCULAR: 0
+                  STEREO: 1
+                  RGBD: 2
+                  IMU_MONOCULAR: 3
+                  IMU_STEREO: 4
+                  IMU_RGBD: 5
+  "slam/Atlas.h":
+    namespaces:
+      ORB_SLAM3:
+        classes:
+          Atlas:
+            member_functions:
+              - GetAllMapPoints
+  "slam/MapPoint.h":
+    namespaces:
+      ORB_SLAM3:
+        classes:
+          MapPoint:
+            member_functions:
+              - GetWorldPos
