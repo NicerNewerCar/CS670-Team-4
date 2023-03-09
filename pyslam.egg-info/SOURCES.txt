@@ -1,0 +1,8 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+pyslam.egg-info/PKG-INFO
+pyslam.egg-info/SOURCES.txt
+pyslam.egg-info/dependency_links.txt
+pyslam.egg-info/top_level.txt

@@ -91,7 +91,7 @@ int mono_euroc(int argc, char **argv)
         {
 
             // Read image from file
-            im = cv::imread(vstrImageFilenames[seq][ni],CV_LOAD_IMAGE_UNCHANGED);
+            im = cv::imread(vstrImageFilenames[seq][ni], cv::IMREAD_UNCHANGED);
             double tframe = vTimestampsCam[seq][ni];
 
             if(im.empty())
