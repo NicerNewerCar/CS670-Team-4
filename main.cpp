@@ -25,6 +25,8 @@ int webcam(int argc, char** argv);
 //Drone
 int drone(int argc, char** argv);
 
+int video(int argc, char** argv);
+
 
 int main(int argc, char** argv)
 {
@@ -81,6 +83,9 @@ int main(int argc, char** argv)
     }
     else if (0 == strcmp(argv[1], "drone")) {
         drone(argc, &argv[1]);
+    }
+    else if (0 == strcmp(argv[1],"video")) {
+        video(argc, &argv[1]);
     }
     else {
         printf("\nUsage: slam.exe testName testArguments");

@@ -182,6 +182,8 @@ public:
 
     //void SaveAtlas(int type);
 
+    Tracking* GetTracker() { return mpTracker; };
+
 private:
 
     //bool LoadAtlas(string filename, int type);
