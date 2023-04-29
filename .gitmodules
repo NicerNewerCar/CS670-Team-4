@@ -1,0 +1,3 @@
+[submodule "SIDE"]
+	path = SIDE
+	url = https://github.com/fangchangma/sparse-to-dense.pytorch.git

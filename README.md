@@ -4,6 +4,8 @@ This repo contains the code for our final project.
 
 ## Cloning the Repository
 
+`git clone --recursive https://github.com/NicerNewerCar/CS670-Team-4.git`
+
 ## SLAM
 
 ### Build instructions
@@ -24,3 +26,5 @@ In order to run the SLAM on a video you need the cameras intrinsic parameters an
 cd SLAM
 .\x64\Release\slam.exe video ./Vocabulary/ORBvoc.txt example.yaml /path/to/video.mp4 /path/to/output/dir
 ```
+
+## SIDE
