@@ -28,3 +28,17 @@ cd SLAM
 ```
 
 ## SIDE
+
+
+##3D reconstruction and map creation 
+
+##Build instructions 
+
+
+##Navigation
+
+
+
+
+
+
