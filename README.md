@@ -34,7 +34,18 @@ cd SLAM
 ## 3D reconstruction and map creation 
 
 ## Build instructions 
+Note: code was ran on **windows** using **python 3.10.9**
 
+* create an anacoda enviroment from the provided yaml file 
+
+## Usage
+Note: directories for io are defined at compile time. Each of the scripts are ran one after another, with 
+the exception of outlier_removal which is optional
+
+* create_point_clouds.py
+* outlier_removal.py
+* merge_point_clouds1.py
+* 
 
 ## Navigation
 
