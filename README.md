@@ -1,4 +1,5 @@
-# CS 670 - Team #4
+# CS 670 - Team #4      Cancel changes
+
 
 This repo contains the code for our final project.
 
@@ -30,12 +31,12 @@ cd SLAM
 ## SIDE
 
 
-##3D reconstruction and map creation 
+## 3D reconstruction and map creation 
 
-##Build instructions 
+## Build instructions 
 
 
-##Navigation
+## Navigation
 
 
 
