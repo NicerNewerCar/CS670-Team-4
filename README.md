@@ -32,7 +32,7 @@ cd SLAM
 ### Build instructions
 Note: 
 * Code was ran on **windows** using Python 3.6
-* All of the process should be followed the above link.
+* All of the process should be followed the above link. The necessary dependencies are located in the environment.yaml file.
 * To customize the h5 files from the NYU dataset as input of the SIDE, please modify the create_point_clouds.py.
 * Our training process is done with the Intel Core i7-8700, 32 GHz, 32 GB RAM, and NVIDIA GTX 1080 GPU.
 
