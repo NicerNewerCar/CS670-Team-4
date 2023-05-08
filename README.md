@@ -58,6 +58,14 @@ only required becuase the A* algorithm we use takes maps as csv's
 
 ## Navigation
 
+An implementation of A* returning the shortest path between two points on a 2D array.
+
+### Usage
+Specify a map, start position and goal position in the map.py. The map should be a .csv file. After that, run main.py at the terminal. The output, a git file, will be created in the same directory.
+
+An example of path planning output.
+![PathPlanning](https://user-images.githubusercontent.com/103143536/236883382-bc11d810-d812-434b-a5a2-b4b165f644c7.gif)
+
 
 
 
