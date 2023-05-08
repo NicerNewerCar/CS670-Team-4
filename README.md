@@ -64,7 +64,7 @@ An implementation of A* returning the shortest path between two points on a 2D a
 Specify a map, start position and goal position in the map.py. The map should be a .csv file. After that, run main.py at the terminal. The output, a git file, will be created in the same directory.
 
 An example of path planning output.
-![Path_Planning](https://user-images.githubusercontent.com/103143536/236896724-a6ccd0ed-385a-4db0-9420-fc30385a3f56.gif)
+
 
 
 
